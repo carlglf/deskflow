@@ -1,0 +1,53 @@
+name: Build Windows x64
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: windows-2022-x64
+    runs-on: windows-2022
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup MSVC environment
+        uses: TheMrMilchmann/setup-msvc-dev@v4
+        with:
+          arch: amd64
+          spectre: true
+
+      - name: Install dependencies
+        id: dependencies
+        uses: ./.github/actions/install-dependencies
+        with:
+          qt-version: 6.10.3
+          vcpkg-triplet: x64-windows-release
+
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DSKIP_BUILD_TESTS=ON
+          -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+          -DPACKAGE_VERSION_LABEL=continuous
+          ${{ steps.dependencies.outputs.vcpkg-cmake-config }}
+
+      - name: Build package
+        run: cmake --build build --config Release -j8 --target package
+
+      - name: Upload package
+        uses: actions/upload-artifact@v7
+        with:
+          name: deskflow-windows-x64
+          path: build/deskflow[-_]*.*
+          if-no-files-found: error
