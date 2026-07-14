@@ -1,0 +1,116 @@
+{
+	"BUILD_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/KeyMapTests_autogen",
+	"CMAKE_BINARY_DIR" : "/Users/glf/workspace/ai/deskflow/build-local",
+	"CMAKE_CURRENT_BINARY_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/glf/workspace/ai/deskflow/src/unittests/deskflow",
+	"CMAKE_EXECUTABLE" : "/opt/homebrew/bin/cmake",
+	"CMAKE_LIST_FILES" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/src/unittests/deskflow/CMakeLists.txt"
+	],
+	"CMAKE_SOURCE_DIR" : "/Users/glf/workspace/ai/deskflow",
+	"CROSS_CONFIG" : false,
+	"DEP_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/KeyMapTests_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "KeyMapTests_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"/Users/glf/workspace/ai/deskflow/src/unittests/deskflow/KeyMapTests.h",
+			"MU",
+			"EWIEGA46WW/moc_KeyMapTests.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/KeyMapTests_autogen/include",
+	"MOC_COMPILATION_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/KeyMapTests_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : 
+	[
+		"HAVE_FORMAT",
+		"QT_CORE_LIB",
+		"QT_NETWORK_LIB",
+		"QT_NO_KEYWORDS",
+		"QT_TESTCASE_BUILDDIR=\"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow\"",
+		"QT_TESTCASE_SOURCEDIR=\"/Users/glf/workspace/ai/deskflow/src/unittests/deskflow\"",
+		"QT_TESTLIB_LIB"
+	],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/src/lib",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib",
+		"/opt/homebrew/opt/qt/lib/QtCore.framework/Headers",
+		"/opt/homebrew/opt/qt/lib/QtCore.framework",
+		"/opt/homebrew/opt/qt/share/qt/mkspecs/macx-clang",
+		"/opt/homebrew/opt/qt/include",
+		"/opt/homebrew/opt/qt/lib/QtNetwork.framework/Headers",
+		"/opt/homebrew/opt/qt/lib/QtNetwork.framework",
+		"/opt/homebrew/opt/qt/lib/QtTest.framework/Headers",
+		"/opt/homebrew/opt/qt/lib/QtTest.framework",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1",
+		"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
+		"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+	],
+	"MOC_MACRO_NAMES" : 
+	[
+		"Q_OBJECT",
+		"Q_GADGET",
+		"Q_NAMESPACE",
+		"Q_NAMESPACE_EXPORT",
+		"Q_GADGET_EXPORT",
+		"Q_ENUM_NS"
+	],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/c++",
+		"-std=c++20",
+		"-w",
+		"-dM",
+		"-E",
+		"/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/KeyMapTests_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/ClipboardChunksTests_autogen/mocs_compilation.cpp",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/ClipboardTests_autogen/mocs_compilation.cpp",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/IKeyStateTests_autogen/mocs_compilation.cpp"
+	],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 16,
+	"PARSE_CACHE_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/CMakeFiles/KeyMapTests_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/opt/homebrew/opt/qt/share/qt/libexec/moc",
+	"QT_UIC_EXECUTABLE" : "/opt/homebrew/opt/qt/share/qt/libexec/uic",
+	"QT_VERSION_MAJOR" : 6,
+	"QT_VERSION_MINOR" : 11,
+	"SETTINGS_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/CMakeFiles/KeyMapTests_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/Users/glf/workspace/ai/deskflow/src/unittests/deskflow/KeyMapTests.cpp",
+			"MU",
+			null
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/ClipboardChunksTests_autogen/mocs_compilation.cpp",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/ClipboardTests_autogen/mocs_compilation.cpp",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/IKeyStateTests_autogen/mocs_compilation.cpp"
+	],
+	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

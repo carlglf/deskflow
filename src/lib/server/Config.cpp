@@ -16,6 +16,7 @@
 #include "net/SocketException.h"
 #include "server/Server.h"
 
+#include <array>
 #include <assert.h>
 #include <cstdlib>
 #include <istream>
@@ -24,6 +25,63 @@
 using namespace deskflow::string;
 
 namespace deskflow::server {
+
+namespace {
+
+bool isExactModifierOption(OptionID id)
+{
+  switch (id) {
+  case kOptionModifierMapForShiftLeft:
+  case kOptionModifierMapForShiftRight:
+  case kOptionModifierMapForControlLeft:
+  case kOptionModifierMapForControlRight:
+  case kOptionModifierMapForAltLeft:
+  case kOptionModifierMapForAltRight:
+  case kOptionModifierMapForMetaLeft:
+  case kOptionModifierMapForMetaRight:
+  case kOptionModifierMapForSuperLeft:
+  case kOptionModifierMapForSuperRight:
+  case kOptionModifierMapForAltGrKey:
+    return true;
+  default:
+    return false;
+  }
+}
+
+const char *exactModifierKeyName(KeyID key)
+{
+  switch (key) {
+  case kKeyShift_L:
+    return "shift_l";
+  case kKeyShift_R:
+    return "shift_r";
+  case kKeyControl_L:
+    return "ctrl_l";
+  case kKeyControl_R:
+    return "ctrl_r";
+  case kKeyAlt_L:
+    return "alt_l";
+  case kKeyAlt_R:
+    return "alt_r";
+  case kKeyMeta_L:
+    return "meta_l";
+  case kKeyMeta_R:
+    return "meta_r";
+  case kKeySuper_L:
+    return "super_l";
+  case kKeySuper_R:
+    return "super_r";
+  case kKeyAltGr:
+    return "altgr";
+  case kKeyNone:
+    return "none";
+  default:
+    return nullptr;
+  }
+}
+
+} // namespace
+
 //
 // Config
 //
@@ -608,6 +666,28 @@ void Config::readSectionScreens(ConfigReadContext &s)
         addOption(screen, kOptionModifierMapForMeta, s.parseModifierKey(value));
       } else if (name == "super") {
         addOption(screen, kOptionModifierMapForSuper, s.parseModifierKey(value));
+      } else if (name == "shift_l") {
+        addOption(screen, kOptionModifierMapForShiftLeft, s.parseExactModifierKey(value));
+      } else if (name == "shift_r") {
+        addOption(screen, kOptionModifierMapForShiftRight, s.parseExactModifierKey(value));
+      } else if (name == "ctrl_l") {
+        addOption(screen, kOptionModifierMapForControlLeft, s.parseExactModifierKey(value));
+      } else if (name == "ctrl_r") {
+        addOption(screen, kOptionModifierMapForControlRight, s.parseExactModifierKey(value));
+      } else if (name == "alt_l") {
+        addOption(screen, kOptionModifierMapForAltLeft, s.parseExactModifierKey(value));
+      } else if (name == "alt_r") {
+        addOption(screen, kOptionModifierMapForAltRight, s.parseExactModifierKey(value));
+      } else if (name == "meta_l") {
+        addOption(screen, kOptionModifierMapForMetaLeft, s.parseExactModifierKey(value));
+      } else if (name == "meta_r") {
+        addOption(screen, kOptionModifierMapForMetaRight, s.parseExactModifierKey(value));
+      } else if (name == "super_l") {
+        addOption(screen, kOptionModifierMapForSuperLeft, s.parseExactModifierKey(value));
+      } else if (name == "super_r") {
+        addOption(screen, kOptionModifierMapForSuperRight, s.parseExactModifierKey(value));
+      } else if (name == "altgr_key") {
+        addOption(screen, kOptionModifierMapForAltGrKey, s.parseExactModifierKey(value));
       } else if (name == "xtestIsXineramaUnaware") {
         addOption(screen, kOptionXTestXineramaUnaware, s.parseBoolean(value));
       } else if (name == "switchCorners") {
@@ -697,9 +777,9 @@ void Config::readSectionLinks(ConfigReadContext &s)
 
 void Config::readSectionAliases(ConfigReadContext &s)
 {
-  qWarning(
-  ) << "Your server config has an alias section. Alias have moved to the general config this section will no be "
-       "parsed.";
+  qWarning()
+      << "Your server config has an alias section. Alias have moved to the general config this section will no be "
+         "parsed.";
   std::string line;
   while (s.readLine(line)) {
     if (line == "end") {
@@ -1004,6 +1084,39 @@ const char *Config::getOptionName(OptionID id)
   if (id == kOptionModifierMapForSuper) {
     return "super";
   }
+  if (id == kOptionModifierMapForShiftLeft) {
+    return "shift_l";
+  }
+  if (id == kOptionModifierMapForShiftRight) {
+    return "shift_r";
+  }
+  if (id == kOptionModifierMapForControlLeft) {
+    return "ctrl_l";
+  }
+  if (id == kOptionModifierMapForControlRight) {
+    return "ctrl_r";
+  }
+  if (id == kOptionModifierMapForAltLeft) {
+    return "alt_l";
+  }
+  if (id == kOptionModifierMapForAltRight) {
+    return "alt_r";
+  }
+  if (id == kOptionModifierMapForMetaLeft) {
+    return "meta_l";
+  }
+  if (id == kOptionModifierMapForMetaRight) {
+    return "meta_r";
+  }
+  if (id == kOptionModifierMapForSuperLeft) {
+    return "super_l";
+  }
+  if (id == kOptionModifierMapForSuperRight) {
+    return "super_r";
+  }
+  if (id == kOptionModifierMapForAltGrKey) {
+    return "altgr_key";
+  }
   if (id == kOptionHeartbeat) {
     return "heartbeat";
   }
@@ -1088,6 +1201,10 @@ std::string Config::getOptionValue(OptionID id, OptionValue value)
     default:
       return "none";
     }
+  }
+  if (isExactModifierOption(id)) {
+    const auto *name = exactModifierKeyName(static_cast<KeyID>(value));
+    return name != nullptr ? name : "";
   }
   if (id == kOptionHeartbeat || id == kOptionScreenSwitchCornerSize || id == kOptionScreenSwitchDelay ||
       id == kOptionScreenSwitchTwoTap) {
@@ -1531,6 +1648,32 @@ OptionValue ConfigReadContext::parseModifierKey(const std::string &arg) const
     return static_cast<OptionValue>(kKeyModifierIDNull);
   }
   throw ServerConfigReadException(*this, "invalid argument \"%{1}\"", arg);
+}
+
+OptionValue ConfigReadContext::parseExactModifierKey(const std::string &arg) const
+{
+  constexpr std::array<std::pair<const char *, KeyID>, 12> keys = {{
+      {"shift_l", kKeyShift_L},
+      {"shift_r", kKeyShift_R},
+      {"ctrl_l", kKeyControl_L},
+      {"ctrl_r", kKeyControl_R},
+      {"alt_l", kKeyAlt_L},
+      {"alt_r", kKeyAlt_R},
+      {"meta_l", kKeyMeta_L},
+      {"meta_r", kKeyMeta_R},
+      {"super_l", kKeySuper_L},
+      {"super_r", kKeySuper_R},
+      {"altgr", kKeyAltGr},
+      {"none", kKeyNone},
+  }};
+
+  for (const auto &[name, key] : keys) {
+    if (CaselessCmp::equal(arg, name)) {
+      return static_cast<OptionValue>(key);
+    }
+  }
+
+  throw ServerConfigReadException(*this, "invalid exact modifier key \"%{1}\"", arg);
 }
 
 OptionValue ConfigReadContext::parseCorner(const std::string &arg) const

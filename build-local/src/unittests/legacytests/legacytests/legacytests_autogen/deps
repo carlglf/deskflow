@@ -1,0 +1,12 @@
+legacytests_autogen/timestamp: \
+	/Users/glf/workspace/ai/deskflow/src/apps/res/deskflow.qrc \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/legacytests/CMakeLists.txt \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/legacytests/arch/unix/ArchNetworkBSDTests.cpp \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/legacytests/deskflow/KeyStateTests.cpp \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/legacytests/main.cpp \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/mock/deskflow/MockEventQueue.h \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/mock/deskflow/MockKeyMap.h \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/mock/deskflow/MockKeyState.h \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/shared/ExitTimeout.cpp \
+	/Users/glf/workspace/ai/deskflow/src/unittests/legacytests/shared/ExitTimeout.h \
+	/opt/homebrew/bin/cmake

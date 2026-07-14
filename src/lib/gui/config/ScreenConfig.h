@@ -29,6 +29,23 @@ public:
     None,
     NumModifiers
   };
+  enum class ModifierKey : int8_t
+  {
+    DefaultKey = -1,
+    ShiftL,
+    ShiftR,
+    CtrlL,
+    CtrlR,
+    AltL,
+    AltR,
+    MetaL,
+    MetaR,
+    SuperL,
+    SuperR,
+    AltGr,
+    None,
+    NumModifierKeys
+  };
   enum class SwitchCorner : int8_t
   {
     TopLeft,
@@ -91,6 +108,18 @@ public:
   {
     return m_ModifierNames[idx];
   }
+  static const char *modifierKeyName(int idx)
+  {
+    return m_ModifierKeyNames[idx];
+  }
+  static const char *modifierKeyOptionName(int idx)
+  {
+    return m_ModifierKeyOptionNames[idx];
+  }
+  static constexpr int modifierKeyCount()
+  {
+    return static_cast<int>(ModifierKey::None);
+  }
   static const char *fixName(int idx)
   {
     return m_FixNames[idx];
@@ -102,6 +131,8 @@ public:
 
 private:
   static const char *m_ModifierNames[];
+  static const char *m_ModifierKeyNames[];
+  static const char *m_ModifierKeyOptionNames[];
   static const char *m_FixNames[];
   static const char *m_SwitchCornerNames[];
 };

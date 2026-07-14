@@ -12,6 +12,7 @@
 #include "deskflow/ClipboardTypes.h"
 #include "deskflow/KeyTypes.h"
 #include "deskflow/KeyboardLayoutManager.h"
+#include "deskflow/ModifierKeyMapper.h"
 
 class Client;
 class ClientInfo;
@@ -117,7 +118,7 @@ private:
 
   bool m_ignoreMouse = false;
 
-  KeyModifierID m_modifierTranslationTable[kKeyModifierIDLast];
+  deskflow::ModifierKeyMapper m_modifierKeyMapper;
 
   double m_keepAliveAlarm = 0.0;
   EventQueueTimer *m_keepAliveAlarmTimer = nullptr;

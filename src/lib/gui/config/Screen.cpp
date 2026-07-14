@@ -30,6 +30,7 @@ void Screen::loadSettings(QSettingsProxy &settings)
   setSwitchCornerSize(settings.value("switchCornerSize").toInt());
 
   readSettings(settings, modifiers(), "modifier", static_cast<int>(DefaultMod), static_cast<int>(NumModifiers));
+  readSettings(settings, modifierKeys(), "modifierKey", static_cast<int>(ModifierKey::DefaultKey), modifierKeyCount());
   readSettings(settings, switchCorners(), "switchCorner", false, static_cast<int>(NumSwitchCorners));
   readSettings(settings, fixes(), "fix", 0, static_cast<int>(NumFixes));
 
@@ -50,6 +51,7 @@ void Screen::saveSettings(QSettingsProxy &settings) const
   settings.setValue("switchCornerSize", switchCornerSize());
 
   writeSettings(settings, modifiers(), "modifier");
+  writeSettings(settings, modifierKeys(), "modifierKey");
   writeSettings(settings, switchCorners(), "switchCorner");
   writeSettings(settings, fixes(), "fix");
 }
@@ -62,6 +64,12 @@ QString Screen::screensSection() const
   for (int i = 0; i < modifiers().size(); i++) {
     if (modifier(i) != i)
       out.append(lineTemplate.arg(modifierName(i), modifierName(modifier(i))));
+  }
+
+  for (int i = 0; i < modifierKeys().size(); i++) {
+    if (modifierKey(i) != static_cast<int>(ModifierKey::DefaultKey)) {
+      out.append(lineTemplate.arg(modifierKeyOptionName(i), modifierKeyName(modifierKey(i))));
+    }
   }
 
   for (int i = 0; i < fixes().size(); i++)
@@ -82,6 +90,7 @@ QString Screen::screensSection() const
 bool Screen::operator==(const Screen &screen) const
 {
   return m_Name == screen.m_Name && m_Aliases == screen.m_Aliases && m_Modifiers == screen.m_Modifiers &&
-         m_SwitchCorners == screen.m_SwitchCorners && m_SwitchCornerSize == screen.m_SwitchCornerSize &&
-         m_Fixes == screen.m_Fixes && m_Swapped == screen.m_Swapped && m_isServer == screen.m_isServer;
+         m_ModifierKeys == screen.m_ModifierKeys && m_SwitchCorners == screen.m_SwitchCorners &&
+         m_SwitchCornerSize == screen.m_SwitchCornerSize && m_Fixes == screen.m_Fixes &&
+         m_Swapped == screen.m_Swapped && m_isServer == screen.m_isServer;
 }

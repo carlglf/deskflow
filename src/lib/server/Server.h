@@ -14,6 +14,7 @@
 #include "deskflow/Clipboard.h"
 #include "deskflow/ClipboardTypes.h"
 #include "deskflow/KeyTypes.h"
+#include "deskflow/ModifierKeyMapper.h"
 #include "deskflow/MouseTypes.h"
 #include "server/Config.h"
 
@@ -303,6 +304,9 @@ private:
   // process options from configuration
   void processOptions();
 
+  // replay physically held modifiers after entering a remote screen
+  void replayPressedModifiers(BaseClientProxy *client) const;
+
   // event handlers
   void handleShapeChanged(BaseClientProxy *client);
   void handleClipboardGrabbed(const Event &event, BaseClientProxy *client);
@@ -371,6 +375,12 @@ private:
     std::string m_clipboardOwner;
     uint32_t m_clipboardSeqNum = 0;
   };
+
+  struct PressedModifier
+  {
+    KeyID m_key = kKeyNone;
+    std::string m_language;
+  };
   // Order suggested by clang
 
   // the Primary Screen Client
@@ -418,6 +428,9 @@ private:
 
   // clipboard cache
   ClipboardInfo m_clipboards[kClipboardEnd];
+
+  // physical modifier keys currently held on the primary keyboard
+  std::map<KeyButton, PressedModifier> m_pressedModifiers;
 
   // used in hello message sent to the client
   NetworkProtocol m_protocol = NetworkProtocol::Barrier;

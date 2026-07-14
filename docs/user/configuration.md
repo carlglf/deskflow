@@ -671,6 +671,30 @@ section: screens
 end
 ```
 
+### Left and right modifier keys
+
+Modifier mappings normally apply to both sides of a modifier and preserve the original side.
+An exact modifier mapping overrides one physical key while leaving the general mapping in effect for keys without an override.
+
+The supported exact source and target names are `shift_l`, `shift_r`, `ctrl_l`, `ctrl_r`, `alt_l`, `alt_r`, `meta_l`, `meta_r`, `super_l`, `super_r`, and `altgr`.
+Use `none` as the target to disable a key.
+Because `altgr` is also the name of the existing general AltGr mapping, use `altgr_key` when configuring the exact AltGr key.
+
+For example, this configuration keeps left Ctrl as Ctrl, maps right Ctrl to left Alt, swaps the two Super keys, and disables the Windows AltGr key:
+
+```
+section: screens
+	mac-client:
+		ctrl_l = ctrl_l
+		ctrl_r = alt_l
+		super_l = super_r
+		super_r = super_l
+		altgr_key = none
+end
+```
+
+The graphical computer settings dialog exposes these overrides through the `Left/right keys...` button under modifier keys.
+
 See also: the man page for ''deskflow-core''.
 
 ### Stacked Example

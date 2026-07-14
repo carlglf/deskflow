@@ -8,6 +8,7 @@
 #pragma once
 
 #include <QDialog>
+#include <QList>
 
 class QWidget;
 class QString;
@@ -35,8 +36,12 @@ private Q_SLOTS:
   void removeAlias() const;
   void checkNewAliasName(const QString &text);
   void aliasSelected();
+  void editModifierKeys();
 
 private:
+  QString modifierKeyLabel(int key) const;
+
   std::unique_ptr<Ui::ScreenSettingsDialog> ui;
   Screen *m_screen;
+  QList<int> m_modifierKeys;
 };

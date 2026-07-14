@@ -1,0 +1,6 @@
+Deskflow_autogen/timestamp: \
+	/Users/glf/workspace/ai/deskflow/src/apps/deskflow-gui/CMakeLists.txt \
+	/Users/glf/workspace/ai/deskflow/src/apps/deskflow-gui/deskflow-gui.cpp \
+	/Users/glf/workspace/ai/deskflow/src/apps/res/deskflow.plist.in \
+	/Users/glf/workspace/ai/deskflow/src/apps/res/deskflow.qrc \
+	/opt/homebrew/bin/cmake

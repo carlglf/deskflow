@@ -13,7 +13,11 @@
 #include "validators/ScreenNameValidator.h"
 #include "validators/ValidationError.h"
 
+#include <QComboBox>
+#include <QDialogButtonBox>
+#include <QFormLayout>
 #include <QMessageBox>
+#include <QVector>
 
 using enum ScreenConfig::Modifier;
 using enum ScreenConfig::SwitchCorner;
@@ -24,7 +28,8 @@ ScreenSettingsDialog::~ScreenSettingsDialog() = default;
 ScreenSettingsDialog::ScreenSettingsDialog(QWidget *parent, Screen *screen, const ScreenList *screens)
     : QDialog(parent, Qt::WindowTitleHint | Qt::WindowSystemMenuHint),
       ui{std::make_unique<Ui::ScreenSettingsDialog>()},
-      m_screen(screen)
+      m_screen(screen),
+      m_modifierKeys(screen->modifierKeys())
 {
 
   ui->setupUi(this);
@@ -67,6 +72,7 @@ ScreenSettingsDialog::ScreenSettingsDialog(QWidget *parent, Screen *screen, cons
   connect(ui->btnRemoveAlias, &QPushButton::clicked, this, &ScreenSettingsDialog::removeAlias);
   connect(ui->lineAddAlias, &QLineEdit::textChanged, this, &ScreenSettingsDialog::checkNewAliasName);
   connect(ui->listAliases, &QListWidget::itemSelectionChanged, this, &ScreenSettingsDialog::aliasSelected);
+  connect(ui->btnModifierKeys, &QPushButton::clicked, this, &ScreenSettingsDialog::editModifierKeys);
 }
 
 void ScreenSettingsDialog::accept()
@@ -107,6 +113,7 @@ void ScreenSettingsDialog::accept()
   m_screen->setModifier(Meta, ui->comboMeta->currentIndex());
   m_screen->setModifier(Super, ui->comboSuper->currentIndex());
   m_screen->setModifier(AltGr, ui->comboAltGr->currentIndex());
+  m_screen->modifierKeys() = m_modifierKeys;
 
   m_screen->setSwitchCorner(TopLeft, ui->chkDeadTopLeft->isChecked());
   m_screen->setSwitchCorner(TopRight, ui->chkDeadTopRight->isChecked());
@@ -145,4 +152,72 @@ void ScreenSettingsDialog::checkNewAliasName(const QString &text)
 void ScreenSettingsDialog::aliasSelected()
 {
   ui->btnRemoveAlias->setEnabled(!ui->listAliases->selectedItems().isEmpty());
+}
+
+void ScreenSettingsDialog::editModifierKeys()
+{
+  QDialog dialog(this);
+  dialog.setWindowTitle(tr("Left and right modifier keys"));
+
+  auto *layout = new QFormLayout(&dialog);
+  QVector<QComboBox *> combos;
+  combos.reserve(ScreenConfig::modifierKeyCount());
+
+  for (int source = 0; source < ScreenConfig::modifierKeyCount(); ++source) {
+    auto *combo = new QComboBox(&dialog);
+    combo->addItem(tr("Use general mapping"), static_cast<int>(ScreenConfig::ModifierKey::DefaultKey));
+    for (int target = 0; target <= static_cast<int>(ScreenConfig::ModifierKey::None); ++target) {
+      combo->addItem(modifierKeyLabel(target), target);
+    }
+    const auto currentIndex = combo->findData(m_modifierKeys[source]);
+    combo->setCurrentIndex(currentIndex >= 0 ? currentIndex : 0);
+    layout->addRow(modifierKeyLabel(source), combo);
+    combos.append(combo);
+  }
+
+  auto *buttons = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, &dialog);
+  connect(buttons, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+  connect(buttons, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+  layout->addRow(buttons);
+
+  if (dialog.exec() != QDialog::Accepted) {
+    return;
+  }
+
+  for (int source = 0; source < combos.size(); ++source) {
+    m_modifierKeys[source] = combos[source]->currentData().toInt();
+  }
+}
+
+QString ScreenSettingsDialog::modifierKeyLabel(int key) const
+{
+  using enum ScreenConfig::ModifierKey;
+  switch (static_cast<ScreenConfig::ModifierKey>(key)) {
+  case ShiftL:
+    return tr("Left Shift");
+  case ShiftR:
+    return tr("Right Shift");
+  case CtrlL:
+    return tr("Left Ctrl");
+  case CtrlR:
+    return tr("Right Ctrl");
+  case AltL:
+    return tr("Left Alt");
+  case AltR:
+    return tr("Right Alt (non-AltGr)");
+  case MetaL:
+    return tr("Left Meta");
+  case MetaR:
+    return tr("Right Meta");
+  case SuperL:
+    return tr("Left Super / Win");
+  case SuperR:
+    return tr("Right Super / Win");
+  case AltGr:
+    return tr("AltGr / Windows right Alt");
+  case None:
+    return tr("None");
+  default:
+    return {};
+  }
 }

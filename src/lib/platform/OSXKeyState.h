@@ -13,6 +13,7 @@
 #include <Carbon/Carbon.h>
 
 #include <map>
+#include <set>
 #include <vector>
 
 class IOSXKeyResource;
@@ -157,9 +158,5 @@ private:
   mutable uint32_t m_deadKeyState;
   AutoCFArray m_groups{nullptr, CFRelease};
   GroupMap m_groupMap;
-  bool m_shiftPressed;
-  bool m_controlPressed;
-  bool m_altPressed;
-  bool m_superPressed;
-  bool m_capsPressed;
+  std::set<CGKeyCode> m_pressedModifiers;
 };

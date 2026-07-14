@@ -1,0 +1,38 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/build-local/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/docs/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/translations/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/arch/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/base/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/client/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/common/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/deskflow/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/io/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/mt/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/server/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib/gui/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/apps/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/apps/deskflow-core/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/apps/deskflow-daemon/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/apps/deskflow-gui/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/base/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/common/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/deskflow/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/gui/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/gui/config/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/gui/core/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/legacytests/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/legacytests/legacytests/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/net/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/platform/cmake_install.cmake",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/unittests/server/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

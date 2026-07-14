@@ -60,6 +60,8 @@ add_library(${lib_name} STATIC ${PLATFORM_CODE}
   KeyState.cpp
   KeyState.h
   MouseTypes.h
+  ModifierKeyMapper.cpp
+  ModifierKeyMapper.h
   OptionTypes.h
   PacketStreamFilter.cpp
   PacketStreamFilter.h

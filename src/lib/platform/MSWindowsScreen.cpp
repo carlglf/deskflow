@@ -21,6 +21,7 @@
 #include "deskflow/ClientApp.h"
 #include "deskflow/Clipboard.h"
 #include "deskflow/KeyMap.h"
+#include "deskflow/ModifierKeyMapper.h"
 #include "deskflow/ScreenException.h"
 #include "platform/MSWindowsClipboard.h"
 #include "platform/MSWindowsDesks.h"
@@ -1048,7 +1049,10 @@ bool MSWindowsScreen::onKey(WPARAM wParam, LPARAM lParam)
       fakeLocalKey(*find, false);
       m_primaryKeyDownList.erase(find);
       m_hook.setMode(kHOOK_RELAY_EVENTS);
-      return true;
+      const auto releasedKey = m_keyState->mapKeyFromEvent(wParam, lParam, nullptr);
+      if (!deskflow::ModifierKeyMapper::isModifierKey(releasedKey)) {
+        return true;
+      }
     }
   }
 

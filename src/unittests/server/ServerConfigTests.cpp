@@ -9,6 +9,8 @@
 
 #include "server/Config.h"
 
+#include <sstream>
+
 class OnlySystemFilter : public InputFilter::Condition
 {
 public:
@@ -29,6 +31,35 @@ public:
 };
 
 using namespace deskflow::server;
+
+void ServerConfigTests::exactModifierMappingsRoundTrip()
+{
+  std::stringstream input;
+  input << "section: screens\n"
+        << "\tmac:\n"
+        << "\t\tctrl_l = ctrl_l\n"
+        << "\t\tctrl_r = alt_l\n"
+        << "\t\tsuper_l = super_r\n"
+        << "\t\taltgr_key = none\n"
+        << "end\n";
+
+  Config config(nullptr);
+  input >> config;
+
+  const auto *options = config.getOptions("mac");
+  QVERIFY(options != nullptr);
+  QCOMPARE(options->at(kOptionModifierMapForControlLeft), static_cast<OptionValue>(kKeyControl_L));
+  QCOMPARE(options->at(kOptionModifierMapForControlRight), static_cast<OptionValue>(kKeyAlt_L));
+  QCOMPARE(options->at(kOptionModifierMapForSuperLeft), static_cast<OptionValue>(kKeySuper_R));
+  QCOMPARE(options->at(kOptionModifierMapForAltGrKey), static_cast<OptionValue>(kKeyNone));
+
+  std::stringstream output;
+  output << config;
+  const auto text = output.str();
+  QVERIFY(text.find("ctrl_r = alt_l") != std::string::npos);
+  QVERIFY(text.find("super_l = super_r") != std::string::npos);
+  QVERIFY(text.find("altgr_key = none") != std::string::npos);
+}
 
 void ServerConfigTests::equalityCheck()
 {

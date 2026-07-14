@@ -31,13 +31,13 @@ class Screen : public ScreenConfig
   friend QDataStream &operator<<(QDataStream &outStream, const Screen &screen)
   {
     return outStream << screen.name() << screen.switchCornerSize() << screen.aliases() << screen.modifiers()
-                     << screen.switchCorners() << screen.fixes() << screen.isServer();
+                     << screen.modifierKeys() << screen.switchCorners() << screen.fixes() << screen.isServer();
   }
 
   friend QDataStream &operator>>(QDataStream &inStream, Screen &screen)
   {
     return inStream >> screen.m_Name >> screen.m_SwitchCornerSize >> screen.m_Aliases >> screen.m_Modifiers >>
-           screen.m_SwitchCorners >> screen.m_Fixes >> screen.m_isServer;
+           screen.m_ModifierKeys >> screen.m_SwitchCorners >> screen.m_Fixes >> screen.m_isServer;
   }
 
 public:
@@ -67,6 +67,14 @@ public:
   [[nodiscard]] const QList<int> &modifiers() const
   {
     return m_Modifiers;
+  }
+  [[nodiscard]] int modifierKey(int key) const
+  {
+    return m_ModifierKeys[key];
+  }
+  [[nodiscard]] const QList<int> &modifierKeys() const
+  {
+    return m_ModifierKeys;
   }
   [[nodiscard]] bool switchCorner(int c) const
   {
@@ -127,6 +135,14 @@ protected:
   {
     return m_Modifiers;
   }
+  void setModifierKey(const ModifierKey key, const int target)
+  {
+    m_ModifierKeys[static_cast<int8_t>(key)] = target;
+  }
+  QList<int> &modifierKeys()
+  {
+    return m_ModifierKeys;
+  }
   void addAlias(const QString &alias)
   {
     m_Aliases.append(alias);
@@ -161,6 +177,9 @@ private:
   QString m_Name = {};
   QStringList m_Aliases = {};
   QList<int> m_Modifiers = {0, 1, 2, 3, 4, 5, 6};
+  QList<int> m_ModifierKeys = {
+      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+  };
   QList<bool> m_SwitchCorners = {false, false, false, false};
   int m_SwitchCornerSize = 0;
   QList<bool> m_Fixes{false, false, false, false};

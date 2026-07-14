@@ -1,0 +1,34 @@
+base_autogen/timestamp: \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/BaseException.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/BaseException.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/CMakeLists.txt \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/DirectionTypes.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/Event.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/EventQueue.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/EventQueue.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/EventQueueTimer.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/EventTypes.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/FinalAction.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/FunctionEventJob.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/FunctionEventJob.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/FunctionJob.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/FunctionJob.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/IEventQueue.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/IEventQueueBuffer.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/IJob.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/ILogOutputter.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/Log.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/Log.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/LogOutputters.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/LogOutputters.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/PriorityQueue.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/SimpleEventQueueBuffer.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/SimpleEventQueueBuffer.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/Stopwatch.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/Stopwatch.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/String.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/String.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/TMethodJob.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/Unicode.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/base/Unicode.h \
+	/opt/homebrew/bin/cmake

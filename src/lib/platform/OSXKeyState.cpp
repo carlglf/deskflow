@@ -22,9 +22,13 @@
 // want to generate for that code.  The others are for mapping
 // different KeyIDs to a single key code.
 static const uint32_t s_shiftVK = kVK_Shift;
+static const uint32_t s_rightShiftVK = kVK_RightShift;
 static const uint32_t s_controlVK = kVK_Control;
+static const uint32_t s_rightControlVK = kVK_RightControl;
 static const uint32_t s_altVK = kVK_Option;
+static const uint32_t s_rightAltVK = kVK_RightOption;
 static const uint32_t s_superVK = kVK_Command;
+static const uint32_t s_rightSuperVK = kVK_RightCommand;
 static const uint32_t s_capsLockVK = kVK_CapsLock;
 static const uint32_t s_numLockVK = kVK_ANSI_KeypadClear; // 71
 
@@ -95,18 +99,17 @@ static const KeyEntry s_controlKeys[] = {
     // to map to.  also the enter key with numlock on is a modifier but i
     // don't know which.
 
-    // modifier keys.  OS X doesn't seem to support right handed versions
-    // of modifier keys so we map them to the left handed versions.
+    // modifier keys
     {kKeyShift_L, s_shiftVK},
-    {kKeyShift_R, s_shiftVK}, // 60
+    {kKeyShift_R, s_rightShiftVK},
     {kKeyControl_L, s_controlVK},
-    {kKeyControl_R, s_controlVK}, // 62
+    {kKeyControl_R, s_rightControlVK},
     {kKeyAlt_L, s_altVK},
-    {kKeyAlt_R, s_altVK},
+    {kKeyAlt_R, s_rightAltVK},
     {kKeySuper_L, s_superVK},
-    {kKeySuper_R, s_superVK}, // 61
+    {kKeySuper_R, s_rightSuperVK},
     {kKeyMeta_L, s_superVK},
-    {kKeyMeta_R, s_superVK}, // 61
+    {kKeyMeta_R, s_rightSuperVK},
 
     // toggle modifiers
     {kKeyNumLock, s_numLockVK},
@@ -166,9 +169,12 @@ io_connect_t getEventDriver()
   return sEventDrvrRef;
 }
 
-bool isModifier(uint8_t virtualKey)
+bool isModifier(CGKeyCode virtualKey)
 {
-  static std::set<uint8_t> modifiers{s_shiftVK, s_superVK, s_altVK, s_controlVK, s_capsLockVK};
+  static const std::set<CGKeyCode> modifiers{
+      s_shiftVK,    s_rightShiftVK, s_superVK,        s_rightSuperVK, s_altVK,
+      s_rightAltVK, s_controlVK,    s_rightControlVK, s_capsLockVK,
+  };
 
   return (modifiers.find(virtualKey) != modifiers.end());
 }
@@ -196,11 +202,7 @@ OSXKeyState::OSXKeyState(
 void OSXKeyState::init()
 {
   m_deadKeyState = 0;
-  m_shiftPressed = false;
-  m_controlPressed = false;
-  m_altPressed = false;
-  m_superPressed = false;
-  m_capsPressed = false;
+  m_pressedModifiers.clear();
 
   // build virtual key map
   for (size_t i = 0; i < sizeof(s_controlKeys) / sizeof(s_controlKeys[0]); ++i) {
@@ -377,23 +379,23 @@ CGEventFlags OSXKeyState::getModifierStateAsOSXFlags() const
 {
   CGEventFlags modifiers = 0;
 
-  if (m_shiftPressed) {
+  if (m_pressedModifiers.contains(s_shiftVK) || m_pressedModifiers.contains(s_rightShiftVK)) {
     modifiers |= kCGEventFlagMaskShift;
   }
 
-  if (m_controlPressed) {
+  if (m_pressedModifiers.contains(s_controlVK) || m_pressedModifiers.contains(s_rightControlVK)) {
     modifiers |= kCGEventFlagMaskControl;
   }
 
-  if (m_altPressed) {
+  if (m_pressedModifiers.contains(s_altVK) || m_pressedModifiers.contains(s_rightAltVK)) {
     modifiers |= kCGEventFlagMaskAlternate;
   }
 
-  if (m_superPressed) {
+  if (m_pressedModifiers.contains(s_superVK) || m_pressedModifiers.contains(s_rightSuperVK)) {
     modifiers |= kCGEventFlagMaskCommand;
   }
 
-  if (m_capsPressed) {
+  if (m_pressedModifiers.contains(s_capsLockVK)) {
     modifiers |= kCGEventFlagMaskAlphaShift;
   }
 
@@ -522,20 +524,32 @@ CGEventFlags OSXKeyState::getDeviceDependedFlags() const
 {
   CGEventFlags modifiers = 0;
 
-  if (m_shiftPressed) {
+  if (m_pressedModifiers.contains(s_shiftVK)) {
     modifiers |= NX_DEVICELSHIFTKEYMASK;
   }
+  if (m_pressedModifiers.contains(s_rightShiftVK)) {
+    modifiers |= NX_DEVICERSHIFTKEYMASK;
+  }
 
-  if (m_controlPressed) {
+  if (m_pressedModifiers.contains(s_controlVK)) {
     modifiers |= NX_DEVICELCTLKEYMASK;
   }
-
-  if (m_altPressed) {
-    modifiers |= NX_DEVICELALTKEYMASK;
+  if (m_pressedModifiers.contains(s_rightControlVK)) {
+    modifiers |= NX_DEVICERCTLKEYMASK;
   }
 
-  if (m_superPressed) {
+  if (m_pressedModifiers.contains(s_altVK)) {
+    modifiers |= NX_DEVICELALTKEYMASK;
+  }
+  if (m_pressedModifiers.contains(s_rightAltVK)) {
+    modifiers |= NX_DEVICERALTKEYMASK;
+  }
+
+  if (m_pressedModifiers.contains(s_superVK)) {
     modifiers |= NX_DEVICELCMDKEYMASK;
+  }
+  if (m_pressedModifiers.contains(s_rightSuperVK)) {
+    modifiers |= NX_DEVICERCMDKEYMASK;
   }
 
   return modifiers;
@@ -547,7 +561,7 @@ CGEventFlags OSXKeyState::getKeyboardEventFlags() const
   // http://tinyurl.com/pxl742y
   CGEventFlags modifiers = getModifierStateAsOSXFlags();
 
-  if (!m_capsPressed) {
+  if (!m_pressedModifiers.contains(s_capsLockVK)) {
     modifiers |= getDeviceDependedFlags();
   }
 
@@ -556,25 +570,15 @@ CGEventFlags OSXKeyState::getKeyboardEventFlags() const
 
 void OSXKeyState::setKeyboardModifiers(CGKeyCode virtualKey, bool keyDown)
 {
-  switch (virtualKey) {
-  case s_shiftVK:
-    m_shiftPressed = keyDown;
-    break;
-  case s_controlVK:
-    m_controlPressed = keyDown;
-    break;
-  case s_altVK:
-    m_altPressed = keyDown;
-    break;
-  case s_superVK:
-    m_superPressed = keyDown;
-    break;
-  case s_capsLockVK:
-    m_capsPressed = keyDown;
-    break;
-  default:
+  if (!isModifier(virtualKey)) {
     LOG_VERBOSE("the key is not a modifier");
-    break;
+    return;
+  }
+
+  if (keyDown) {
+    m_pressedModifiers.insert(virtualKey);
+  } else {
+    m_pressedModifiers.erase(virtualKey);
   }
 }
 

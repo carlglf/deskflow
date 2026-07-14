@@ -1,0 +1,319 @@
+{
+	"BUILD_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/net_autogen",
+	"CMAKE_BINARY_DIR" : "/Users/glf/workspace/ai/deskflow/build-local",
+	"CMAKE_CURRENT_BINARY_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/glf/workspace/ai/deskflow/src/lib/net",
+	"CMAKE_EXECUTABLE" : "/opt/homebrew/bin/cmake",
+	"CMAKE_LIST_FILES" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/src/lib/net/CMakeLists.txt",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/Qt6Config.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/Qt6ConfigExtras.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/QtInstallPaths.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/Qt6TargetsPrecheck.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtFeature.cmake",
+		"/opt/homebrew/share/cmake/Modules/CheckCXXCompilerFlag.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtFeatureCommon.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicAndroidHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicAppleHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicExternalProjectHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicFindPackageHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicGitHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicPluginHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicPluginHelpers_v2.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomAttributionHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomBuildToolHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomCommonGenerationHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomCpeHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomCycloneDXHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomDocumentNamespaceHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomDepHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomExternalReferenceHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomGenerationCycloneDXHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomOpsHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomPurlHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomPythonHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomQtEntityHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomRelationshipHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicSbomSystemDepHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicTargetHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicTestHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicToolHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake",
+		"/opt/homebrew/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+		"/opt/homebrew/opt/qt/lib/cmake/Qt6/Qt6Dependencies.cmake",
+		"/opt/homebrew/share/cmake/Modules/FindOpenSSL.cmake",
+		"/opt/homebrew/share/cmake/Modules/FindPkgConfig.cmake",
+		"/opt/homebrew/share/cmake/Modules/FindPackageHandleStandardArgs.cmake",
+		"/opt/homebrew/share/cmake/Modules/FindPackageMessage.cmake",
+		"/opt/homebrew/share/cmake/Modules/FindPackageHandleStandardArgs.cmake",
+		"/opt/homebrew/share/cmake/Modules/FindPackageMessage.cmake"
+	],
+	"CMAKE_SOURCE_DIR" : "/Users/glf/workspace/ai/deskflow",
+	"CROSS_CONFIG" : false,
+	"DEP_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/net_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "net_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/Fingerprint.h",
+			"MU",
+			"EWIEGA46WW/moc_Fingerprint.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/FingerprintDatabase.h",
+			"MU",
+			"EWIEGA46WW/moc_FingerprintDatabase.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/IDataSocket.h",
+			"MU",
+			"EWIEGA46WW/moc_IDataSocket.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/IListenSocket.h",
+			"MU",
+			"EWIEGA46WW/moc_IListenSocket.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/ISocket.h",
+			"MU",
+			"EWIEGA46WW/moc_ISocket.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/ISocketFactory.h",
+			"MU",
+			"EWIEGA46WW/moc_ISocketFactory.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/ISocketMultiplexerJob.h",
+			"MU",
+			"EWIEGA46WW/moc_ISocketMultiplexerJob.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/NetworkAddress.h",
+			"MU",
+			"EWIEGA46WW/moc_NetworkAddress.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SecureListenSocket.h",
+			"MU",
+			"EWIEGA46WW/moc_SecureListenSocket.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SecureSocket.h",
+			"MU",
+			"EWIEGA46WW/moc_SecureSocket.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SecureUtils.h",
+			"MU",
+			"EWIEGA46WW/moc_SecureUtils.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SecurityLevel.h",
+			"MU",
+			"EWIEGA46WW/moc_SecurityLevel.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SocketException.h",
+			"MU",
+			"EWIEGA46WW/moc_SocketException.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SocketMultiplexer.h",
+			"MU",
+			"EWIEGA46WW/moc_SocketMultiplexer.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SslLogger.h",
+			"MU",
+			"EWIEGA46WW/moc_SslLogger.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/TCPListenSocket.h",
+			"MU",
+			"EWIEGA46WW/moc_TCPListenSocket.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/TCPSocket.h",
+			"MU",
+			"EWIEGA46WW/moc_TCPSocket.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/TCPSocketFactory.h",
+			"MU",
+			"EWIEGA46WW/moc_TCPSocketFactory.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/TSocketMultiplexerMethodJob.h",
+			"MU",
+			"EWIEGA46WW/moc_TSocketMultiplexerMethodJob.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/net_autogen/include",
+	"MOC_COMPILATION_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/net_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : [ "HAVE_FORMAT", "QT_CORE_LIB", "QT_NETWORK_LIB", "QT_NO_KEYWORDS" ],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/src/lib",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib",
+		"/opt/homebrew/opt/openssl@3/include",
+		"/opt/homebrew/opt/qt/lib/QtNetwork.framework/Headers",
+		"/opt/homebrew/opt/qt/lib/QtNetwork.framework",
+		"/opt/homebrew/opt/qt/lib/QtCore.framework/Headers",
+		"/opt/homebrew/opt/qt/lib/QtCore.framework",
+		"/opt/homebrew/opt/qt/share/qt/mkspecs/macx-clang",
+		"/opt/homebrew/opt/qt/include",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1",
+		"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
+		"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+	],
+	"MOC_MACRO_NAMES" : 
+	[
+		"Q_OBJECT",
+		"Q_GADGET",
+		"Q_NAMESPACE",
+		"Q_NAMESPACE_EXPORT",
+		"Q_GADGET_EXPORT",
+		"Q_ENUM_NS"
+	],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/c++",
+		"-std=c++20",
+		"-w",
+		"-dM",
+		"-E",
+		"/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/net_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 16,
+	"PARSE_CACHE_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/CMakeFiles/net_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/opt/homebrew/opt/qt/share/qt/libexec/moc",
+	"QT_UIC_EXECUTABLE" : "/opt/homebrew/opt/qt/share/qt/libexec/uic",
+	"QT_VERSION_MAJOR" : 6,
+	"QT_VERSION_MINOR" : 11,
+	"SETTINGS_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/net/CMakeFiles/net_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/Fingerprint.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/FingerprintDatabase.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/IDataSocket.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/NetworkAddress.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SecureListenSocket.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SecureSocket.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SecureUtils.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SocketException.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SocketMultiplexer.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/SslLogger.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/TCPListenSocket.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/TCPSocket.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/net/TCPSocketFactory.cpp",
+			"MU",
+			null
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

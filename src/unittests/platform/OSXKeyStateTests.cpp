@@ -12,7 +12,8 @@
 
 #define SHIFT_ID_L kKeyShift_L
 #define SHIFT_ID_R kKeyShift_R
-#define SHIFT_BUTTON 57
+#define SHIFT_BUTTON_L 57
+#define SHIFT_BUTTON_R 61
 #define A_CHAR_ID 0x00000061
 #define A_CHAR_BUTTON 001
 
@@ -63,16 +64,36 @@ void OSXKeyStateTests::fakePollShift()
   keyState.updateKeyMap();
 
   keyState.fakeKeyDown(SHIFT_ID_L, 0, 1, "en");
-  QVERIFY(isKeyPressed(keyState, SHIFT_BUTTON));
+  QVERIFY(isKeyPressed(keyState, SHIFT_BUTTON_L));
 
   keyState.fakeKeyUp(1);
-  QVERIFY(!isKeyPressed(keyState, SHIFT_BUTTON));
+  QVERIFY(!isKeyPressed(keyState, SHIFT_BUTTON_L));
 
   keyState.fakeKeyDown(SHIFT_ID_R, 0, 2, "en");
-  QVERIFY(isKeyPressed(keyState, SHIFT_BUTTON));
+  QVERIFY(isKeyPressed(keyState, SHIFT_BUTTON_R));
 
   keyState.fakeKeyUp(2);
-  QVERIFY(!isKeyPressed(keyState, SHIFT_BUTTON));
+  QVERIFY(!isKeyPressed(keyState, SHIFT_BUTTON_R));
+}
+
+void OSXKeyStateTests::fakePollBothShifts()
+{
+  deskflow::KeyMap keyMap;
+  EventQueue eventQueue;
+  OSXKeyState keyState(&eventQueue, keyMap, {"en"}, true);
+  keyState.updateKeyMap();
+
+  keyState.fakeKeyDown(SHIFT_ID_L, 0, 1, "en");
+  keyState.fakeKeyDown(SHIFT_ID_R, KeyModifierShift, 2, "en");
+  QVERIFY(isKeyPressed(keyState, SHIFT_BUTTON_L));
+  QVERIFY(isKeyPressed(keyState, SHIFT_BUTTON_R));
+
+  keyState.fakeKeyUp(1);
+  QVERIFY(!isKeyPressed(keyState, SHIFT_BUTTON_L));
+  QVERIFY(isKeyPressed(keyState, SHIFT_BUTTON_R));
+
+  keyState.fakeKeyUp(2);
+  QVERIFY(!isKeyPressed(keyState, SHIFT_BUTTON_R));
 }
 
 void OSXKeyStateTests::fakePollChar()

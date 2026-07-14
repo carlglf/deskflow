@@ -1,0 +1,310 @@
+{
+	"BUILD_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/platform_autogen",
+	"CMAKE_BINARY_DIR" : "/Users/glf/workspace/ai/deskflow/build-local",
+	"CMAKE_CURRENT_BINARY_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/Users/glf/workspace/ai/deskflow/src/lib/platform",
+	"CMAKE_EXECUTABLE" : "/opt/homebrew/bin/cmake",
+	"CMAKE_LIST_FILES" : [ "/Users/glf/workspace/ai/deskflow/src/lib/platform/CMakeLists.txt" ],
+	"CMAKE_SOURCE_DIR" : "/Users/glf/workspace/ai/deskflow",
+	"CROSS_CONFIG" : false,
+	"DEP_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/platform_autogen/deps",
+	"DEP_FILE_RULE_NAME" : "platform_autogen/timestamp",
+	"HEADERS" : 
+	[
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/IOSXKeyResource.h",
+			"MU",
+			"EWIEGA46WW/moc_IOSXKeyResource.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXAutoTypes.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXAutoTypes.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboard.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboard.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardAnyBitmapConverter.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboardAnyBitmapConverter.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardAnyTextConverter.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboardAnyTextConverter.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardBMPConverter.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboardBMPConverter.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardHTMLConverter.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboardHTMLConverter.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardTextConverter.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboardTextConverter.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardUTF16Converter.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboardUTF16Converter.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardUTF8Converter.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXClipboardUTF8Converter.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXCocoaApp.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXCocoaApp.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXEventQueueBuffer.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXEventQueueBuffer.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXKeyState.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXKeyState.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXMediaKeySupport.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXMediaKeySupport.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXPasteboardPeeker.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXPasteboardPeeker.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXPowerManager.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXPowerManager.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXScreen.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXScreen.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXScreenSaver.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXScreenSaver.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXScreenSaverControl.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXScreenSaverControl.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXScreenSaverUtil.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXScreenSaverUtil.cpp",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXUchrKeyResource.h",
+			"MU",
+			"EWIEGA46WW/moc_OSXUchrKeyResource.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/platform_autogen/include",
+	"MOC_COMPILATION_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/platform_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : [ "HAVE_FORMAT", "QT_CORE_LIB", "QT_NETWORK_LIB", "QT_NO_KEYWORDS" ],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/Users/glf/workspace/ai/deskflow/src/lib",
+		"/Users/glf/workspace/ai/deskflow/build-local/src/lib",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/ScreenSaver.framework",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/IOKit.framework",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/ApplicationServices.framework",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Carbon.framework",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/UserNotifications.framework",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Cocoa.framework",
+		"/opt/homebrew/opt/qt/lib/QtCore.framework/Headers",
+		"/opt/homebrew/opt/qt/lib/QtCore.framework",
+		"/opt/homebrew/opt/qt/share/qt/mkspecs/macx-clang",
+		"/opt/homebrew/opt/qt/include",
+		"/opt/homebrew/opt/qt/lib/QtNetwork.framework/Headers",
+		"/opt/homebrew/opt/qt/lib/QtNetwork.framework",
+		"/opt/homebrew/opt/openssl@3/include",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1",
+		"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/21/include",
+		"/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include",
+		"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"
+	],
+	"MOC_MACRO_NAMES" : 
+	[
+		"Q_OBJECT",
+		"Q_GADGET",
+		"Q_NAMESPACE",
+		"Q_NAMESPACE_EXPORT",
+		"Q_GADGET_EXPORT",
+		"Q_ENUM_NS"
+	],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/usr/bin/c++",
+		"-std=c++20",
+		"-w",
+		"-dM",
+		"-E",
+		"/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/platform_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 16,
+	"PARSE_CACHE_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/CMakeFiles/platform_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/opt/homebrew/opt/qt/share/qt/libexec/moc",
+	"QT_UIC_EXECUTABLE" : "/opt/homebrew/opt/qt/share/qt/libexec/uic",
+	"QT_VERSION_MAJOR" : 6,
+	"QT_VERSION_MINOR" : 11,
+	"SETTINGS_FILE" : "/Users/glf/workspace/ai/deskflow/build-local/src/lib/platform/CMakeFiles/platform_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/IOSXKeyResource.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboard.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardAnyBitmapConverter.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardAnyTextConverter.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardBMPConverter.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardHTMLConverter.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardTextConverter.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardUTF16Converter.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXClipboardUTF8Converter.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXCocoaApp.m",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXEventQueueBuffer.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXKeyState.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXMediaKeySupport.m",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXPasteboardPeeker.m",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXPowerManager.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXScreen.mm",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXScreenSaver.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXScreenSaverUtil.m",
+			"MU",
+			null
+		],
+		[
+			"/Users/glf/workspace/ai/deskflow/src/lib/platform/OSXUchrKeyResource.cpp",
+			"MU",
+			null
+		]
+	],
+	"UIC_OPTIONS" : [],
+	"UIC_SEARCH_PATHS" : [],
+	"UIC_SKIP" : [],
+	"UIC_UI_FILES" : [],
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}

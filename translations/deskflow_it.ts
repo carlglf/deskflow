@@ -896,11 +896,71 @@ Inoltre, verifica di poter %1 il file di configurazione del server: %2</translat
         <translation>Il nome dello schermo non può essere uguale a un alias. Rimuovi l&apos;alias o modifica il nome dello schermo.</translation>
     </message>
     <message>
+        <source>Left and right modifier keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use general mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left Shift</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right Shift</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left Ctrl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right Ctrl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left Alt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right Alt (non-AltGr)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left Meta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right Meta</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left Super / Win</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right Super / Win</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AltGr / Windows right Alt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Alt Gr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt &amp;Gr</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Override individual left and right modifier keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left/right keys...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

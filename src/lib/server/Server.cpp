@@ -477,6 +477,9 @@ void Server::switchScreen(BaseClientProxy *dst, int32_t x, int32_t y, bool forSc
 
     // enter new screen
     m_active->enter(x, y, m_seqNum, m_primaryClient->getToggleMask(), forScreensaver);
+    if (m_active != m_primaryClient) {
+      replayPressedModifiers(m_active);
+    }
 
     if (m_enableClipboard) {
       // send the clipboard data to new active screen
@@ -1064,6 +1067,15 @@ void Server::sendOptions(BaseClientProxy *client) const
   client->setOptions(optionsList);
 }
 
+void Server::replayPressedModifiers(BaseClientProxy *client) const
+{
+  KeyModifierMask mask = m_primaryClient->getToggleMask();
+  for (const auto &[button, modifier] : m_pressedModifiers) {
+    mask |= deskflow::ModifierKeyMapper::modifierMaskForKey(modifier.m_key);
+    client->keyDown(modifier.m_key, mask, button, modifier.m_language);
+  }
+}
+
 void Server::processOptions()
 {
   const Config::ScreenOptions *options = m_config->getOptions("");
@@ -1213,6 +1225,9 @@ void Server::handleKeyDownEvent(const Event &event)
 {
   const auto *info = static_cast<IPlatformScreen::KeyInfo *>(event.getData());
   auto lang = AppUtil::instance().getCurrentLanguageCode();
+  if (info->m_button != 0 && deskflow::ModifierKeyMapper::isModifierKey(info->m_key)) {
+    m_pressedModifiers[info->m_button] = {info->m_key, lang};
+  }
   onKeyDown(info->m_key, info->m_mask, info->m_button, lang, info->m_screens.c_str());
 }
 
@@ -1220,6 +1235,7 @@ void Server::handleKeyUpEvent(const Event &event)
 {
   auto *info = static_cast<IPlatformScreen::KeyInfo *>(event.getData());
   onKeyUp(info->m_key, info->m_mask, info->m_button, info->m_screens.c_str());
+  m_pressedModifiers.erase(info->m_button);
 }
 
 void Server::handleKeyRepeatEvent(const Event &event)

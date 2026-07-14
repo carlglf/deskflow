@@ -1,0 +1,14 @@
+mt_autogen/timestamp: \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/CMakeLists.txt \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/CondVar.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/CondVar.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/Lock.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/Lock.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/MTException.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/MTException.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/Mutex.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/Mutex.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/Thread.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/Thread.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/mt/ThreadException.h \
+	/opt/homebrew/bin/cmake

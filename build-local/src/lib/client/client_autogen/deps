@@ -1,0 +1,7 @@
+client_autogen/timestamp: \
+	/Users/glf/workspace/ai/deskflow/src/lib/client/CMakeLists.txt \
+	/Users/glf/workspace/ai/deskflow/src/lib/client/Client.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/client/Client.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/client/ServerProxy.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/client/ServerProxy.h \
+	/opt/homebrew/bin/cmake

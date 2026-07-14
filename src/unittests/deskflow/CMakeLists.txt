@@ -5,6 +5,7 @@ if(WIN32)
   set(extra_libs platform version)
 endif()
 
+
 create_test(
   NAME ClipboardTests
   DEPENDS app
@@ -46,6 +47,14 @@ create_test(
 )
 
 create_test(
+  NAME ModifierKeyMapperTests
+  DEPENDS app
+  LIBS arch base ${extra_libs}
+  SOURCE ModifierKeyMapperTests.cpp
+  WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/src/lib/deskflow"
+)
+
+create_test(
   NAME KeyboardLayoutManagerTests
   DEPENDS app
   LIBS arch base ${extra_libs}
@@ -62,4 +71,3 @@ if(BUILD_X11_SUPPORT)
     WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/src/lib/deskflow"
   )
 endif()
-

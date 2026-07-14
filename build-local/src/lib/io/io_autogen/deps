@@ -1,0 +1,10 @@
+io_autogen/timestamp: \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/CMakeLists.txt \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/IOException.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/IOException.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/IStream.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/StreamBuffer.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/StreamBuffer.h \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/StreamFilter.cpp \
+	/Users/glf/workspace/ai/deskflow/src/lib/io/StreamFilter.h \
+	/opt/homebrew/bin/cmake
