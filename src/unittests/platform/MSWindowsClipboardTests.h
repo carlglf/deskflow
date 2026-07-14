@@ -1,5 +1,6 @@
 /*
  * Deskflow -- mouse and keyboard sharing utility
+ * SPDX-FileCopyrightText: (C) 2026 Deskflow Developers
  * SPDX-FileCopyrightText: (C) 2025 Chris Rizzitello <sithlord48@gmail.com>
  * SPDX-License-Identifier: GPL-2.0-only WITH LicenseRef-OpenSSL-Exception
  */
@@ -28,6 +29,8 @@ private Q_SLOTS:
   void has_withNoFormatAdded();
   void getNonEmptyText();
   void isOwnedByDeskflow();
+  void topDownBitfieldsBitmap();
+  void topDownBitfieldsV5Bitmap();
 
 private:
   Log m_log;
