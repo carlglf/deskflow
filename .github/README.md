@@ -10,6 +10,12 @@ and work seamlessly between them.
 It's like a software KVM (but without the video).
 TLS encryption is enabled by default. Wayland is supported. Clipboard sharing is supported.
 
+## About This Fork
+
+This repository is forked from the upstream [Deskflow project](https://github.com/deskflow/deskflow).
+It includes optimizations for setups that use Windows and macOS together.
+Modifier-key remapping can distinguish the left and right `Ctrl`, `Alt`, and Windows (`Win`/`Super`) keys, allowing each physical key to be mapped independently.
+
 > [!TIP]
 >
 > **Chat with us**
