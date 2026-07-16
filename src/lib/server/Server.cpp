@@ -1067,12 +1067,20 @@ void Server::sendOptions(BaseClientProxy *client) const
   client->setOptions(optionsList);
 }
 
-void Server::replayPressedModifiers(BaseClientProxy *client) const
+void Server::replayPressedModifiers(BaseClientProxy *client)
 {
   KeyModifierMask mask = m_primaryClient->getToggleMask();
-  for (const auto &[button, modifier] : m_pressedModifiers) {
+  for (auto i = m_pressedModifiers.begin(); i != m_pressedModifiers.end();) {
+    const auto &[button, modifier] = *i;
+    if (!m_screen->getPlatformScreen()->isKeyDown(button)) {
+      LOG_DEBUG("discarding stale pressed modifier, key=0x%08x button=0x%04x", modifier.m_key, button);
+      i = m_pressedModifiers.erase(i);
+      continue;
+    }
+
     mask |= deskflow::ModifierKeyMapper::modifierMaskForKey(modifier.m_key);
     client->keyDown(modifier.m_key, mask, button, modifier.m_language);
+    ++i;
   }
 }
 

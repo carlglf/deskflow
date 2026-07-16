@@ -305,7 +305,7 @@ private:
   void processOptions();
 
   // replay physically held modifiers after entering a remote screen
-  void replayPressedModifiers(BaseClientProxy *client) const;
+  void replayPressedModifiers(BaseClientProxy *client);
 
   // event handlers
   void handleShapeChanged(BaseClientProxy *client);
