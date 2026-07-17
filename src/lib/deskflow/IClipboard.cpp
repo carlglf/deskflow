@@ -9,6 +9,7 @@
 
 #include "base/Log.h"
 
+#include <array>
 #include <assert.h>
 #include <vector>
 
@@ -139,6 +140,49 @@ bool IClipboard::hasData(const IClipboard *clipboard)
   return hasData;
 }
 
+bool IClipboard::containsData(const IClipboard *clipboard, const IClipboard *candidate)
+{
+  assert(clipboard != nullptr);
+  assert(candidate != nullptr);
+
+  std::array<bool, static_cast<size_t>(Format::TotalFormats)> hasFormat{};
+  std::array<std::string, static_cast<size_t>(Format::TotalFormats)> formatData;
+  bool hasData = false;
+
+  if (!candidate->open(0)) {
+    return false;
+  }
+
+  for (int32_t format = 0; format != static_cast<int32_t>(Format::TotalFormats); ++format) {
+    const auto clipboardFormat = static_cast<Format>(format);
+    if (candidate->has(clipboardFormat)) {
+      formatData[format] = candidate->get(clipboardFormat);
+      hasFormat[format] = !formatData[format].empty();
+      hasData = hasData || hasFormat[format];
+    }
+  }
+
+  candidate->close();
+
+  if (!hasData || !clipboard->open(0)) {
+    return false;
+  }
+
+  bool contains = true;
+  for (int32_t format = 0; format != static_cast<int32_t>(Format::TotalFormats); ++format) {
+    if (hasFormat[format]) {
+      const auto clipboardFormat = static_cast<Format>(format);
+      if (!clipboard->has(clipboardFormat) || clipboard->get(clipboardFormat) != formatData[format]) {
+        contains = false;
+        break;
+      }
+    }
+  }
+
+  clipboard->close();
+  return contains;
+}
+
 bool IClipboard::copy(IClipboard *dst, const IClipboard *src)
 {
   assert(dst != nullptr);
@@ -152,23 +196,41 @@ bool IClipboard::copy(IClipboard *dst, const IClipboard *src, Time time)
   assert(dst != nullptr);
   assert(src != nullptr);
 
-  bool success = false;
-  if (src->open(time)) {
-    if (dst->open(time)) {
-      if (dst->empty()) {
-        for (int32_t format = 0; format != static_cast<int>(Format::TotalFormats); ++format) {
-          auto eFormat = (IClipboard::Format)format;
-          if (src->has(eFormat)) {
-            dst->add(eFormat, src->get(eFormat));
-          }
-        }
-        success = true;
-      }
-      dst->close();
-    }
-    src->close();
+  // Read the source completely before emptying the destination. Platform
+  // clipboards can transiently expose no formats while they are changing.
+  std::array<bool, static_cast<size_t>(Format::TotalFormats)> hasFormat{};
+  std::array<std::string, static_cast<size_t>(Format::TotalFormats)> formatData;
+  bool hasData = false;
+
+  if (!src->open(time)) {
+    return false;
   }
 
+  for (int32_t format = 0; format != static_cast<int>(Format::TotalFormats); ++format) {
+    const auto eFormat = static_cast<IClipboard::Format>(format);
+    if (src->has(eFormat)) {
+      hasFormat[format] = true;
+      formatData[format] = src->get(eFormat);
+      hasData = hasData || !formatData[format].empty();
+    }
+  }
+
+  src->close();
+
+  if (!hasData || !dst->open(time)) {
+    return false;
+  }
+
+  bool success = dst->empty();
+  if (success) {
+    for (int32_t format = 0; format != static_cast<int>(Format::TotalFormats); ++format) {
+      if (hasFormat[format]) {
+        dst->add(static_cast<IClipboard::Format>(format), formatData[format]);
+      }
+    }
+  }
+
+  dst->close();
   return success;
 }
 

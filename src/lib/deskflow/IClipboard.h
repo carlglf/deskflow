@@ -133,6 +133,13 @@ public:
   */
   static bool hasData(const IClipboard *clipboard);
 
+  //! Check whether a clipboard already contains another clipboard's data
+  /*!
+  Returns true iff every non-empty format in \p candidate exists with the
+  same data in \p clipboard. Extra formats in \p clipboard are ignored.
+  */
+  static bool containsData(const IClipboard *clipboard, const IClipboard *candidate);
+
   //! Unmarshall clipboard data
   /*!
   Extract marshalled clipboard data and store it in \p clipboard.

@@ -808,8 +808,13 @@ void OSXScreen::leave()
 bool OSXScreen::setClipboard(ClipboardID, const IClipboard *src)
 {
   if (src != nullptr) {
+    if (IClipboard::containsData(&m_pasteboard, src)) {
+      LOG_DEBUG("not setting clipboard because macOS already contains the remote data");
+      return true;
+    }
+
     LOG_DEBUG("setting clipboard");
-    Clipboard::copy(&m_pasteboard, src);
+    return Clipboard::copy(&m_pasteboard, src);
   }
   return true;
 }

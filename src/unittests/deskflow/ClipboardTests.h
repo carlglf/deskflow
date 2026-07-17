@@ -25,10 +25,15 @@ private Q_SLOTS:
   void unMarshalTextAndHtml();
   void equalClipboards();
   void failedCopyPreservesDestination();
+  void emptyCopyPreservesDestination();
   void hasDataRejectsUnavailableClipboard();
   void hasDataRejectsClipboardWithoutFormats();
   void hasDataRejectsEmptyFormat();
   void hasDataAcceptsNonEmptyFormat();
+  void containsDataAcceptsIdenticalClipboard();
+  void containsDataAcceptsMatchingFormatSubset();
+  void containsDataRejectsDifferentData();
+  void containsDataRejectsEmptyCandidate();
 
 private:
   const std::string kTestString1 = "deskflow rocks";

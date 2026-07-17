@@ -14,7 +14,12 @@ private Q_SLOTS:
   // Test are run in order top to bottom
   void open();
   void singleFormat();
+  void emptyCopyPreservesPasteboard();
+  void containsMatchingTextSubset();
   void formatConvert_UTF8();
+  void formatConvert_PNG();
+  void nativePNG();
+  void formatConvert_TIFF();
 
 private:
   Log m_log;

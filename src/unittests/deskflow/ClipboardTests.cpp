@@ -286,6 +286,21 @@ void ClipboardTests::failedCopyPreservesDestination()
   destination.close();
 }
 
+void ClipboardTests::emptyCopyPreservesDestination()
+{
+  Clipboard destination;
+  QVERIFY(destination.open(0));
+  destination.add(IClipboard::Format::Text, kTestString1);
+  destination.close();
+
+  Clipboard source;
+  QVERIFY(!IClipboard::copy(&destination, &source));
+
+  QVERIFY(destination.open(0));
+  QCOMPARE(destination.get(IClipboard::Format::Text), kTestString1);
+  destination.close();
+}
+
 void ClipboardTests::hasDataRejectsUnavailableClipboard()
 {
   UnavailableClipboard clipboard;
@@ -316,6 +331,64 @@ void ClipboardTests::hasDataAcceptsNonEmptyFormat()
   clipboard.close();
 
   QVERIFY(IClipboard::hasData(&clipboard));
+}
+
+void ClipboardTests::containsDataAcceptsIdenticalClipboard()
+{
+  Clipboard clipboard;
+  QVERIFY(clipboard.open(0));
+  clipboard.add(IClipboard::Format::Text, kTestString1);
+  clipboard.close();
+
+  Clipboard candidate;
+  QVERIFY(candidate.open(0));
+  candidate.add(IClipboard::Format::Text, kTestString1);
+  candidate.close();
+
+  QVERIFY(IClipboard::containsData(&clipboard, &candidate));
+}
+
+void ClipboardTests::containsDataAcceptsMatchingFormatSubset()
+{
+  Clipboard clipboard;
+  QVERIFY(clipboard.open(0));
+  clipboard.add(IClipboard::Format::Text, kTestString1);
+  clipboard.add(IClipboard::Format::HTML, kTestString2);
+  clipboard.close();
+
+  Clipboard candidate;
+  QVERIFY(candidate.open(0));
+  candidate.add(IClipboard::Format::Text, kTestString1);
+  candidate.close();
+
+  QVERIFY(IClipboard::containsData(&clipboard, &candidate));
+  QVERIFY(!IClipboard::containsData(&candidate, &clipboard));
+}
+
+void ClipboardTests::containsDataRejectsDifferentData()
+{
+  Clipboard clipboard;
+  QVERIFY(clipboard.open(0));
+  clipboard.add(IClipboard::Format::Text, kTestString1);
+  clipboard.close();
+
+  Clipboard candidate;
+  QVERIFY(candidate.open(0));
+  candidate.add(IClipboard::Format::Text, kTestString2);
+  candidate.close();
+
+  QVERIFY(!IClipboard::containsData(&clipboard, &candidate));
+}
+
+void ClipboardTests::containsDataRejectsEmptyCandidate()
+{
+  Clipboard clipboard;
+  QVERIFY(clipboard.open(0));
+  clipboard.add(IClipboard::Format::Text, kTestString1);
+  clipboard.close();
+
+  Clipboard candidate;
+  QVERIFY(!IClipboard::containsData(&clipboard, &candidate));
 }
 
 QTEST_MAIN(ClipboardTests)
