@@ -239,6 +239,11 @@ bool Client::leave()
 
 void Client::setClipboard(ClipboardID id, const IClipboard *clipboard)
 {
+  if (!m_enableClipboard) {
+    LOG_DEBUG("ignoring remote clipboard %d update because clipboard sharing is disabled", id);
+    return;
+  }
+
   m_screen->setClipboard(id, clipboard);
   m_ownClipboard[id] = false;
   m_sentClipboard[id] = false;
@@ -246,6 +251,11 @@ void Client::setClipboard(ClipboardID id, const IClipboard *clipboard)
 
 void Client::grabClipboard(ClipboardID id)
 {
+  if (!m_enableClipboard) {
+    LOG_DEBUG("ignoring remote clipboard %d grab because clipboard sharing is disabled", id);
+    return;
+  }
+
   m_screen->grabClipboard(id);
   m_ownClipboard[id] = false;
   m_sentClipboard[id] = false;

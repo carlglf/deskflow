@@ -1449,6 +1449,11 @@ void Server::handleLockCursorToScreenEvent(const Event &event)
 
 void Server::onClipboardChanged(const BaseClientProxy *sender, ClipboardID id, uint32_t seqNum)
 {
+  if (!m_enableClipboard || m_maximumClipboardSize == 0) {
+    LOG_DEBUG("ignored clipboard %d update because clipboard sharing is disabled", id);
+    return;
+  }
+
   ClipboardInfo &clipboard = m_clipboards[id];
 
   // ignore update if sequence number is old
