@@ -201,6 +201,10 @@ void MSWindowsScreen::enable()
 
 void MSWindowsScreen::disable()
 {
+  if (!m_isEnabled) {
+    return;
+  }
+
   LOG_DEBUG("disabling %s screen", m_isPrimary ? "primary" : "secondary");
   m_isEnabled = false;
 
