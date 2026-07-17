@@ -224,8 +224,7 @@ void *OSXScreen::getEventTarget() const
 
 bool OSXScreen::getClipboard(ClipboardID, IClipboard *dst) const
 {
-  Clipboard::copy(dst, &m_pasteboard);
-  return true;
+  return Clipboard::copy(dst, &m_pasteboard);
 }
 
 void OSXScreen::getShape(int32_t &x, int32_t &y, int32_t &w, int32_t &h) const

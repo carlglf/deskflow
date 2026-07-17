@@ -10,6 +10,47 @@
 
 #include "deskflow/Clipboard.h"
 
+namespace {
+
+class UnavailableClipboard : public IClipboard
+{
+public:
+  bool empty() override
+  {
+    return false;
+  }
+
+  void add(Format, const std::string &) override
+  {
+  }
+
+  bool open(Time) const override
+  {
+    return false;
+  }
+
+  void close() const override
+  {
+  }
+
+  Time getTime() const override
+  {
+    return 0;
+  }
+
+  bool has(Format) const override
+  {
+    return false;
+  }
+
+  std::string get(Format) const override
+  {
+    return {};
+  }
+};
+
+} // namespace
+
 void ClipboardTests::initTestCase()
 {
   m_log.setFilter(LogLevel::Level::Verbose);
@@ -228,6 +269,21 @@ void ClipboardTests::equalClipboards()
   clipboard2.open(0);
   QCOMPARE(clipboard2.get(IClipboard::Format::Text), kTestString1);
   clipboard2.close();
+}
+
+void ClipboardTests::failedCopyPreservesDestination()
+{
+  Clipboard destination;
+  QVERIFY(destination.open(0));
+  destination.add(IClipboard::Format::Text, kTestString1);
+  destination.close();
+
+  UnavailableClipboard source;
+  QVERIFY(!IClipboard::copy(&destination, &source));
+
+  QVERIFY(destination.open(0));
+  QCOMPARE(destination.get(IClipboard::Format::Text), kTestString1);
+  destination.close();
 }
 
 QTEST_MAIN(ClipboardTests)

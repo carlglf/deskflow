@@ -484,6 +484,11 @@ void Server::switchScreen(BaseClientProxy *dst, int32_t x, int32_t y, bool forSc
     if (m_enableClipboard) {
       // send the clipboard data to new active screen
       for (ClipboardID id = 0; id < kClipboardEnd; ++id) {
+        if (!m_clipboards[id].m_clipboardDataReady) {
+          LOG_DEBUG("not sending clipboard %d because its data is not ready", id);
+          continue;
+        }
+
         // Hackity hackity hack
         if (m_clipboards[id].m_clipboard.marshall().size() > (m_maximumClipboardSize * 1024)) {
           continue;
@@ -1194,13 +1199,7 @@ void Server::handleClipboardGrabbed(const Event &event, BaseClientProxy *grabber
   );
   clipboard.m_clipboardOwner = getName(grabber);
   clipboard.m_clipboardSeqNum = info->m_sequenceNumber;
-
-  // clear the clipboard data (since it's not known at this point)
-  if (clipboard.m_clipboard.open(0)) {
-    clipboard.m_clipboard.empty();
-    clipboard.m_clipboard.close();
-  }
-  clipboard.m_clipboardData = clipboard.m_clipboard.marshall();
+  clipboard.m_clipboardDataReady = false;
 
   // tell all other screens to take ownership of clipboard.  tell the
   // grabber that it's clipboard isn't dirty.
@@ -1465,10 +1464,15 @@ void Server::onClipboardChanged(const BaseClientProxy *sender, ClipboardID id, u
   // should be the expected client
   assert(sender == m_clients.find(clipboard.m_clipboardOwner)->second);
 
-  // get data
-  sender->getClipboard(id, &clipboard.m_clipboard);
+  // Read into a temporary so a transient platform read failure does not
+  // destroy the last valid clipboard or send an empty clipboard to clients.
+  Clipboard incoming;
+  if (!sender->getClipboard(id, &incoming)) {
+    LOG_WARN("failed to read clipboard %d from screen \"%s\"", id, clipboard.m_clipboardOwner.c_str());
+    return;
+  }
 
-  std::string data = clipboard.m_clipboard.marshall();
+  std::string data = incoming.marshall();
   if (data.size() > m_maximumClipboardSize * 1024) {
     LOG_WARN("not sending clipboard data, exceeds limit: %i KB", m_maximumClipboardSize);
     return;
@@ -1477,12 +1481,16 @@ void Server::onClipboardChanged(const BaseClientProxy *sender, ClipboardID id, u
   // ignore if data hasn't changed
   if (data == clipboard.m_clipboardData) {
     LOG_DEBUG("ignored screen \"%s\" update of clipboard %d (unchanged)", clipboard.m_clipboardOwner.c_str(), id);
+    clipboard.m_clipboardDataReady = true;
+    m_active->setClipboard(id, &clipboard.m_clipboard);
     return;
   }
 
   // got new data
   LOG_INFO("screen \"%s\" updated clipboard %d", clipboard.m_clipboardOwner.c_str(), id);
+  Clipboard::copy(&clipboard.m_clipboard, &incoming);
   clipboard.m_clipboardData = data;
+  clipboard.m_clipboardDataReady = true;
 
   // tell all clients except the sender that the clipboard is dirty
   for (ClientList::const_iterator index = m_clients.begin(); index != m_clients.end(); ++index) {
