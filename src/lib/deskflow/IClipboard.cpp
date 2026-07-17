@@ -118,6 +118,27 @@ std::string IClipboard::marshall(const IClipboard *clipboard)
   return data;
 }
 
+bool IClipboard::hasData(const IClipboard *clipboard)
+{
+  assert(clipboard != nullptr);
+
+  if (!clipboard->open(0)) {
+    return false;
+  }
+
+  bool hasData = false;
+  for (int32_t format = 0; format != static_cast<int32_t>(Format::TotalFormats); ++format) {
+    const auto clipboardFormat = static_cast<Format>(format);
+    if (clipboard->has(clipboardFormat) && !clipboard->get(clipboardFormat).empty()) {
+      hasData = true;
+      break;
+    }
+  }
+
+  clipboard->close();
+  return hasData;
+}
+
 bool IClipboard::copy(IClipboard *dst, const IClipboard *src)
 {
   assert(dst != nullptr);

@@ -7,9 +7,13 @@
 
 #include "platform/MSWindowsClipboardFacade.h"
 
+#include "base/Log.h"
+
 void MSWindowsClipboardFacade::write(HANDLE win32Data, UINT win32Format)
 {
   if (SetClipboardData(win32Format, win32Data) == nullptr) {
+    LOG_WARN("failed to write Windows clipboard format %u: %lu", win32Format, GetLastError());
+
     // free converted data if we couldn't put it on
     // the clipboard.
     // nb: couldn't cause this in integ tests.

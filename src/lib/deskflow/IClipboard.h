@@ -126,6 +126,13 @@ public:
   */
   static std::string marshall(const IClipboard *clipboard);
 
+  //! Check for transferable data
+  /*!
+  Returns true iff \p clipboard contains at least one supported format
+  with non-empty data. Returns false if the clipboard cannot be opened.
+  */
+  static bool hasData(const IClipboard *clipboard);
+
   //! Unmarshall clipboard data
   /*!
   Extract marshalled clipboard data and store it in \p clipboard.

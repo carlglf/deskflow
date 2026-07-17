@@ -1472,6 +1472,14 @@ void Server::onClipboardChanged(const BaseClientProxy *sender, ClipboardID id, u
     return;
   }
 
+  if (!IClipboard::hasData(&incoming)) {
+    LOG_WARN(
+        "ignored clipboard %d update from screen \"%s\" because it has no supported non-empty formats", id,
+        clipboard.m_clipboardOwner.c_str()
+    );
+    return;
+  }
+
   std::string data = incoming.marshall();
   if (data.size() > m_maximumClipboardSize * 1024) {
     LOG_WARN("not sending clipboard data, exceeds limit: %i KB", m_maximumClipboardSize);

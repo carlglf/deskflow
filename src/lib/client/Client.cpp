@@ -385,7 +385,15 @@ void Client::sendClipboard(ClipboardID id)
   if (clipboard.open(m_timeClipboard[id])) {
     clipboard.close();
   }
-  m_screen->getClipboard(id, &clipboard);
+  if (!m_screen->getClipboard(id, &clipboard)) {
+    LOG_WARN("not sending clipboard %d because it could not be read", id);
+    return;
+  }
+
+  if (!IClipboard::hasData(&clipboard)) {
+    LOG_WARN("not sending clipboard %d because it has no supported non-empty formats", id);
+    return;
+  }
 
   // check time
   if (m_timeClipboard[id] == 0 || clipboard.getTime() != m_timeClipboard[id]) {

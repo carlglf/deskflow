@@ -286,4 +286,36 @@ void ClipboardTests::failedCopyPreservesDestination()
   destination.close();
 }
 
+void ClipboardTests::hasDataRejectsUnavailableClipboard()
+{
+  UnavailableClipboard clipboard;
+  QVERIFY(!IClipboard::hasData(&clipboard));
+}
+
+void ClipboardTests::hasDataRejectsClipboardWithoutFormats()
+{
+  Clipboard clipboard;
+  QVERIFY(!IClipboard::hasData(&clipboard));
+}
+
+void ClipboardTests::hasDataRejectsEmptyFormat()
+{
+  Clipboard clipboard;
+  QVERIFY(clipboard.open(0));
+  clipboard.add(IClipboard::Format::Text, {});
+  clipboard.close();
+
+  QVERIFY(!IClipboard::hasData(&clipboard));
+}
+
+void ClipboardTests::hasDataAcceptsNonEmptyFormat()
+{
+  Clipboard clipboard;
+  QVERIFY(clipboard.open(0));
+  clipboard.add(IClipboard::Format::Text, kTestString1);
+  clipboard.close();
+
+  QVERIFY(IClipboard::hasData(&clipboard));
+}
+
 QTEST_MAIN(ClipboardTests)
