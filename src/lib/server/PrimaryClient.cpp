@@ -127,10 +127,11 @@ void PrimaryClient::setClipboard(ClipboardID id, const IClipboard *clipboard)
 
 void PrimaryClient::grabClipboard(ClipboardID id)
 {
-  // grab clipboard
-  m_screen->grabClipboard(id);
-
-  // clipboard is dirty (because someone else owns it now)
+  // Do not claim the local system clipboard here. On Windows that clears the
+  // clipboard and can provoke clipboard managers into restoring stale data,
+  // which is then mistaken for a new local copy and sent back to the active
+  // remote screen. The current clipboard is applied by setClipboard() when
+  // this screen next becomes active.
   m_clipboardDirty[id] = true;
 }
 
