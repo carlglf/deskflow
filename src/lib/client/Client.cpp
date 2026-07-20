@@ -46,10 +46,7 @@ Client::Client(
       m_socketFactory(socketFactory),
       m_screen(screen),
       m_events(events),
-      m_useSecureNetwork(Settings::value(Settings::Security::TlsEnabled).toBool()),
-      m_maximumClipboardReceiveSize(
-          static_cast<size_t>(Settings::value(Settings::Server::ClipboardSize).toUInt()) * 1024 * 1024
-      )
+      m_useSecureNetwork(Settings::value(Settings::Security::TlsEnabled).toBool())
 {
   assert(m_socketFactory != nullptr);
   assert(m_screen != nullptr);
@@ -181,7 +178,7 @@ NetworkAddress Client::getServerAddress() const
 
 size_t Client::getMaximumClipboardReceiveSizeBytes() const
 {
-  return m_maximumClipboardReceiveSize;
+  return m_clipboardOptions.maximumSizeBytes();
 }
 
 void *Client::getEventTarget() const
@@ -225,7 +222,7 @@ bool Client::leave()
 
   m_screen->leave();
 
-  if (m_enableClipboard) {
+  if (m_clipboardOptions.isEnabled()) {
     // send clipboards that we own and that have changed
     for (ClipboardID id = 0; id < kClipboardEnd; ++id) {
       if (m_ownClipboard[id]) {
@@ -239,7 +236,7 @@ bool Client::leave()
 
 void Client::setClipboard(ClipboardID id, const IClipboard *clipboard)
 {
-  if (!m_enableClipboard) {
+  if (!m_clipboardOptions.isEnabled()) {
     LOG_DEBUG("ignoring remote clipboard %d update because clipboard sharing is disabled", id);
     return;
   }
@@ -251,7 +248,7 @@ void Client::setClipboard(ClipboardID id, const IClipboard *clipboard)
 
 void Client::grabClipboard(ClipboardID id)
 {
-  if (!m_enableClipboard) {
+  if (!m_clipboardOptions.isEnabled()) {
     LOG_DEBUG("ignoring remote clipboard %d grab because clipboard sharing is disabled", id);
     return;
   }
@@ -313,6 +310,7 @@ void Client::screensaver(bool activate)
 
 void Client::resetOptions()
 {
+  m_clipboardOptions.reset();
   m_relativeMouseMoves = false;
   m_hasRelativeRestorePosition = false;
   m_screen->resetOptions();
@@ -325,35 +323,18 @@ void Client::setOptions(const OptionsList &options)
     return;
   }
 
-  for (auto index = options.begin(); index != options.end(); ++index) {
-    const OptionID id = *index;
-    if (id == kOptionClipboardSharing) {
-      index++;
-      if (index != options.end()) {
-        if (!*index) {
-          LOG_INFO("clipboard sharing disabled by server");
-        }
-        m_enableClipboard = *index;
-      }
-    } else if (id == kOptionClipboardSharingSize) {
-      index++;
-      if (index != options.end()) {
-        m_maximumClipboardSize = *index;
-      }
-    } else if (id == kOptionRelativeMouseMoves) {
-      index++;
-      if (index != options.end()) {
-        m_relativeMouseMoves = (*index != 0);
-        if (m_relativeMouseMoves && m_ready && !m_hasRelativeRestorePosition) {
-          saveRelativeRestorePosition();
-        }
-      }
-    }
+  m_clipboardOptions.setOptions(options);
+  if (!m_clipboardOptions.isEnabled()) {
+    LOG_INFO("clipboard sharing disabled by server");
   }
 
-  if (m_enableClipboard && !m_maximumClipboardSize) {
-    m_enableClipboard = false;
-    LOG_INFO("clipboard sharing is disabled because the server set the maximum clipboard size to 0");
+  for (size_t i = 0; i < options.size(); i += 2) {
+    if (options[i] == kOptionRelativeMouseMoves) {
+      m_relativeMouseMoves = options[i + 1] != 0;
+      if (m_relativeMouseMoves && m_ready && !m_hasRelativeRestorePosition) {
+        saveRelativeRestorePosition();
+      }
+    }
   }
 
   m_screen->setOptions(options);
@@ -399,8 +380,8 @@ void Client::sendClipboard(ClipboardID id)
   if (m_timeClipboard[id] == 0 || clipboard.getTime() != m_timeClipboard[id]) {
     // marshall the data
     std::string data = clipboard.marshall();
-    if (data.size() >= m_maximumClipboardSize * 1024) {
-      LOG_WARN("not sending clipboard data, exceeds limit: %zu KB", m_maximumClipboardSize);
+    if (m_clipboardOptions.exceedsMaximumSizeBytes(data.size())) {
+      LOG_WARN("not sending clipboard data, exceeds limit: %zu KB", m_clipboardOptions.maximumSizeKiB());
       return;
     }
 
@@ -609,7 +590,7 @@ void Client::handleShapeChanged()
 
 void Client::handleClipboardGrabbed(const Event &event)
 {
-  if (!m_enableClipboard || (m_maximumClipboardSize == 0)) {
+  if (!m_clipboardOptions.isEnabled()) {
     return;
   }
 

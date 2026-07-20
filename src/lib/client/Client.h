@@ -8,14 +8,13 @@
 
 #pragma once
 
+#include "client/ClientClipboardOptions.h"
 #include "deskflow/IClient.h"
 
 #include "base/EventTypes.h"
 #include "common/Enums.h"
 #include "deskflow/IClipboard.h"
 #include "net/NetworkAddress.h"
-
-#include <climits>
 
 class Event;
 class EventQueueTimer;
@@ -201,12 +200,10 @@ private:
   std::string m_dataClipboard[kClipboardEnd];
   IEventQueue *m_events = nullptr;
   bool m_useSecureNetwork = false;
-  bool m_enableClipboard = true;
+  ClientClipboardOptions m_clipboardOptions;
   bool m_relativeMouseMoves = false;
   bool m_hasRelativeRestorePosition = false;
   int32_t m_relativeRestoreX = 0;
   int32_t m_relativeRestoreY = 0;
-  size_t m_maximumClipboardReceiveSize = 0;
-  size_t m_maximumClipboardSize = INT_MAX;
   size_t m_resolvedAddressesCount = 0;
 };

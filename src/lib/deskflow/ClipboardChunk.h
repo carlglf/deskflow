@@ -22,7 +22,9 @@ class IStream;
 struct ClipboardChunkAssemblyState
 {
   size_t expectedSize = 0;
+  size_t receivedSize = 0;
   bool active = false;
+  bool discarding = false;
 };
 
 class ClipboardChunk : public Chunk

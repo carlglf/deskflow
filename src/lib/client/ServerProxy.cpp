@@ -290,7 +290,9 @@ ServerProxy::ConnectionResult ServerProxy::parseMessage(const uint8_t *code)
   }
 
   else if (memcmp(code, kMsgDClipboard, 4) == 0) {
-    setClipboard();
+    if (!setClipboard()) {
+      return Disconnect;
+    }
   }
 
   else if (memcmp(code, kMsgCResetOptions, 4) == 0) {
@@ -428,7 +430,7 @@ void ServerProxy::leave()
   m_modifierKeyMapper.clearPressedKeys();
 }
 
-void ServerProxy::setClipboard()
+bool ServerProxy::setClipboard()
 {
   // parse
   ClipboardID id;
@@ -454,7 +456,10 @@ void ServerProxy::setClipboard()
     LOG_INFO("clipboard was updated");
   } else if (r == TransferState::Error) {
     m_client->disconnect("invalid clipboard data from server");
+    return false;
   }
+
+  return true;
 }
 
 void ServerProxy::grabClipboard()

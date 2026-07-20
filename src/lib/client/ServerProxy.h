@@ -82,7 +82,7 @@ private:
   // message handlers
   void enter();
   void leave();
-  void setClipboard();
+  bool setClipboard();
   void grabClipboard();
   void keyDown(uint16_t id, uint16_t mask, uint16_t button, const std::string &lang);
   void keyRepeat();

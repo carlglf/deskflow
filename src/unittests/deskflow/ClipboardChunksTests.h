@@ -18,8 +18,10 @@ private Q_SLOTS:
   void formatDataChunk();
   void endFormatData();
   void assembleAllowsDataAtExpectedSizeAndLimit();
+  void assembleAllowsConsecutiveTransfers();
   void assembleRejectsDataBeyondExpectedSize();
-  void assembleRejectsExpectedSizeBeyondLimit();
+  void assembleDiscardsExpectedSizeBeyondLimit();
+  void assembleRejectsDiscardedDataBeyondExpectedSize();
 
 private:
   Log m_log;
